@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import unittest
-from .. import core
+from .. import utils as core
 
 
 class PageHunterTest(unittest.TestCase):
@@ -29,11 +29,11 @@ class PageHunterTest(unittest.TestCase):
         self.assertTrue(text1 == _ret)
 
     def test_extract_between_prefix_and_suffix(self):
-        text = "abcdefgagagagaga1231231231ababababc"       
+        text = "abcdefgagagagaga1231231231ababababc"
         prefix = 'ga'
         suffix = "ab"  # (?=ab)
 
-        texts = core.extract_by_prefix_and_suffix(text, prefix, suffix) 
+        texts = core.extract_by_prefix_and_suffix(text, prefix, suffix)
         self.assertIsInstance(texts, list)
 
         self.assertTrue(len(texts) > 0)
