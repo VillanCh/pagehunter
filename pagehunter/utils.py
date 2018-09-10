@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import re
 import typing
+from functools import reduce
 from difflib import SequenceMatcher
 
 
@@ -74,7 +75,7 @@ def extract_dynamic_content_marking(
             break
 
         for next_block in blocks:
-            next_block = blocks[0]
+            #next_block = blocks[0]
             if next_block.size < border_length:
                 continue
 

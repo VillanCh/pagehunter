@@ -38,7 +38,7 @@ class Page(object):
 
 class PageHunter(object):
 
-    def __init__(self, base_page, split=" "):
+    def __init__(self, base_page, split=" ", diff_char_count=30):
         if isinstance(base_page, Page):
             pass
         else:
@@ -49,17 +49,70 @@ class PageHunter(object):
 
         # all base_pages are the same in raw
         self._raw_stable = None
+        self._raw_dynamic = None
+        self._raw_heavy_dynamic = None
 
         # all base_pages are the same in without_style_and_script
         self._noscript_stable = None
+        self._noscript_dynamic = None
+        self._noscript_heavy_dynamic = None
 
         # all base_pages are the text_only
         self._text_stable = None
+        self._text_dynamic = None
+        self._text_heavy_dynamic = None
+
+        # tolerence_char_count
+        self.diff_char_count = 30
 
         # dynamic markings
         self.raw_dynamic_markings = []
         self.noscript_dynamic_markings = []
         self.text_dynamic_markings = []
+
+    @property
+    def stable_raw(self):
+        return self._raw_stable
+
+    @property
+    def dynamic_raw(self):
+        """"""
+        return self._raw_dynamic
+
+    @property
+    def heavy_dynamic_raw(self):
+        """"""
+        return self._raw_heavy_dynamic
+
+    @property
+    def stable_noscript(self):
+        """"""
+        return self._noscript_stable
+
+    @property
+    def dynamic_noscript(self):
+        """"""
+        return self._noscript_dynamic
+
+    @property
+    def heavy_dynamic_noscript(self):
+        """"""
+        return self._noscript_heavy_dynamic
+
+    @property
+    def stable_text(self):
+        """"""
+        return self._text_stable
+
+    @property
+    def dynamic_text(self):
+        """"""
+        return self._text_dynamic
+
+    @property
+    def heavy_dynamic_text(self):
+        """"""
+        return self._text_heavy_dynamic
 
     def add_base_page_string(self, raw):
         """"""
@@ -74,21 +127,52 @@ class PageHunter(object):
         """"""
         _ret = self._raw_stable is None and self._noscript_stable is None and\
             self._text_stable is None
-        return _ret
+        return not _ret
 
     def _feed_base_page(self, page: Page):
         """"""
-        self._raw_stable = 0 <= len(
-            [base_page for base_page in self.base_pages if base_page.raw == page.raw])
+        def heavy_dynamic(str1, str2):
+            ratio = self.diff_char_count / min(len(str1), len(str2))
+            return ratio > utils.calc_ratio(str1, str2)
 
-        self._noscript_stable = 0 <= len(
-            [base_page for base_page in self.base_pages if base_page.without_script_and_style ==
-                page.without_script_and_style]
-        )
-        self._text_stable = 0 <= len(
-            [base_page for base_page in self.base_pages if base_page.text_without_script_and_style ==
-                page.text_without_script_and_style]
-        )
+        # update stable
+        if self._raw_stable or self._raw_stable is None:
+            self._raw_stable = 0 == len(
+                [base_page for base_page in self.base_pages if base_page.raw != page.raw])
+
+        if not self._raw_heavy_dynamic or self._raw_dynamic is None:
+            self._raw_dynamic = not self._raw_stable
+            self._raw_heavy_dynamic = 0 < len(
+                [base_page for base_page in self.base_pages if heavy_dynamic(base_page.raw, page.raw)]
+            )
+
+        if self._noscript_stable or self._noscript_stable is None:
+            self._noscript_stable = 0 == len(
+                [base_page for base_page in self.base_pages if base_page.without_script_and_style !=
+                    page.without_script_and_style]
+            )
+
+        if not self._noscript_heavy_dynamic or self._noscript_dynamic is None:
+            self._noscript_dynamic = not self._noscript_stable
+            self._noscript_heavy_dynamic = 0 < len(
+                [base_page for base_page in self.base_pages if heavy_dynamic(
+                    page.without_script_and_style, base_page.without_script_and_style
+                )]
+            )
+
+        if self._text_stable or self._text_stable is None:
+            self._text_stable = 0 == len(
+                [base_page for base_page in self.base_pages if base_page.text_without_script_and_style !=
+                    page.text_without_script_and_style]
+            )
+
+        if not self._text_heavy_dynamic:
+            self._text_dynamic = not self._text_stable
+            self._text_heavy_dynamic = 0 < len(
+                [base_page for base_page in self.base_pages if heavy_dynamic(
+                    page.text_without_script_and_style, base_page.text_without_script_and_style
+                )]
+            )
         self.base_pages.append(page)
 
         # extrace dynamic markings
@@ -99,7 +183,7 @@ class PageHunter(object):
         if len(self.base_pages) <= 1:
             return []
 
-        for (base1, base2) in self.base_pages:
+        for (base1, base2) in itertools.combinations(self.base_pages, 2):
             for item in utils.extract_dynamic_content_marking(
                     base1.raw, base2.raw):
                 if item not in self.raw_dynamic_markings:
@@ -115,9 +199,29 @@ class PageHunter(object):
                 if item not in self.text_dynamic_markings:
                     self.text_dynamic_markings.append(item)
 
-    def calc_ratio_with_base_page(self, ):
+    def calc_ratio_with_base_page(self, page: Page, remove_dynamic_content=True, repl=" "):
         """"""
-        pass
+        def _calc_ratio(type):
+            min_raw_ratio = 1
+            for base_page in self.base_pages:
+                seq1 = getattr(base_page, type)
+                seq2 = getattr(page, type)
+                if remove_dynamic_content:
+                    if type == "raw":
+                        seq1 = self.remove_dynamic_content_for_raw(seq1, repl)
+                        seq2 = self.remove_dynamic_content_for_raw(seq2, repl)
+                    elif type == 'without_script_and_style':
+                        seq1 = self.remove_dynamic_content_for_noscript(seq1, repl)
+                        seq2 = self.remove_dynamic_content_for_noscript(seq2, repl)
+                    elif type == "text_without_script_and_style":
+                        seq1 = self.remove_dynamic_content_for_textonly(seq1, repl)
+                        seq2 = self.remove_dynamic_content_for_textonly(seq2, repl)
+                ratio = utils.calc_ratio(seq1, seq2)
+                min_raw_ratio = min(min_raw_ratio, ratio)
+            return min_raw_ratio
+
+        types = ("raw", "without_script_and_style", "text_without_script_and_style")
+        return tuple([_calc_ratio(type) for type in types])
 
     def remove_dynamic_content_for_raw(self, raw, repl=" "):
         """"""
@@ -131,6 +235,4 @@ class PageHunter(object):
     def remove_dynamic_content_for_textonly(self, text, repl=" "):
         """"""
         return utils.remove_dynamic_content_by_markings(text, self.text_dynamic_markings, repl)
-
-
 
