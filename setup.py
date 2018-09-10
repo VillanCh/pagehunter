@@ -9,7 +9,7 @@ def get_git_revision_short_hash():
 
 
 setup(
-    name='arupy',
+    name='pagehunter',
     # See https://www.python.org/dev/peps/pep-0440/
     version="1.{}".format(get_git_revision_short_hash()),
     description='PageHunter - Web 页面的相似度处理 from sqlmap',
