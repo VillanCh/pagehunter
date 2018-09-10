@@ -1214,6 +1214,282 @@ base3 = """
 
 """
 
+base4 = '''
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="defaultLanguage" content="en">
+    <meta name="availableLanguages" content="en">
+
+    
+
+    <title>Register · PyPI</title>
+    <meta name="description" content="The Python Package Index (PyPI) is a repository of software for the Python programming language.">
+
+    <link rel="stylesheet" href="/static/css/warehouse.a1809af1.css">
+    <link rel="stylesheet" href="/static/css/fontawesome.4b73fd92.css">
+    <link rel="stylesheet" href="/static/css/regular.19624371.css">
+    <link rel="stylesheet" href="/static/css/solid.f478cfb1.css">
+    <link rel="stylesheet" href="/static/css/brands.1ea560bf.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic|Source+Code+Pro:500">
+    <noscript>
+      <link rel="stylesheet" href="/static/css/noscript.ea8974d1.css">
+    </noscript>
+
+    
+
+    <link rel="icon" href="/static/images/favicon.6a76275d.ico" type="image/x-icon">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS: 40 latest updates" href="/rss/updates.xml">
+    <link rel="alternate" type="application/rss+xml" title="RSS: 40 newest packages" href="/rss/packages.xml">
+    
+
+    <meta property="og:url" content="https://pypi.org/account/register/">
+    <meta property="og:site_name" content="PyPI">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pypi.org/static/images/twitter.c0030826.jpg">
+    <meta property="og:title" content="Register">
+    <meta property="og:description" content="The Python Package Index (PyPI) is a repository of software for the Python programming language.">
+
+    <link rel="search" type="application/opensearchdescription+xml" title="PyPI" href="/opensearch.xml">
+
+    
+    <script
+      src="https://cdn.ravenjs.com/3.26.2/raven.min.js"
+      integrity="sha384-D6LXy67EIC102DTuqypxwQsTHgiatlbvg7q/1YAWFb6lRyZ1lIZ6bGDsX7jxHNKA"
+      crossorigin="anonymous">
+    </script>
+    
+    <script async
+            data-ga-id="UA-55961911-1"
+            data-sentry-frontend-dsn="https://3a67b35c9dc248a191d761410b095861@sentry.io/1231155"
+            src="/static/js/warehouse.b56a7115.js">
+    </script>
+    
+  <script async
+  src="/static/js/vendor/zxcvbn.9cf6916d.js">
+</script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-55961911-1"></script>
+    <script defer src="https://www.fastly-insights.com/insights.js?k=6a52360a-f306-421e-8ed5-7417d0d4a4e9&dnt=true"></script>
+  </head>
+
+  <body data-controller="viewport-toggle">
+    
+
+    <!-- Accessibility: this link should always be the first piece of content inside the body-->
+    <a href="#content" class="skip-to-content">Skip to main content</a>
+
+    <button class="button button--primary button--switch-to-mobile hidden" data-target="viewport-toggle.switchToMobile" data-action="viewport-toggle#switchToMobile">
+      Switch to mobile version
+    </button>
+
+    <section id="sticky-notifications" class="stick-to-top js-stick-to-top">
+      <!-- Add browser warning. Will show for ie9 and below -->
+      <!--[if IE]>
+      <div class="notification-bar notification-bar--danger">
+        <span class="notification-bar__icon">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          <span class="sr-only">Warning:</span>
+        </span>
+        <span class="notification-bar__message">You are using an unsupported browser, upgrade to a newer version.</span>
+      </div>
+      <![endif]-->
+      
+      <noscript>
+      <div class="notification-bar notification-bar--danger">
+        
+        <span class="notification-bar__icon">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          <span class="sr-only">Warning:</span>
+        </span>
+        <span class="notification-bar__message">Some features may not work without JavaScript. Please try enabling it if you encounter problems.</span>
+      </div>
+      </noscript>
+    </section>
+
+    
+      <div data-html-include="/_includes/flash-messages/">
+      </div>
+    
+
+    
+
+    
+
+    <header class="site-header ">
+      <div class="site-container">
+        <div class="split-layout">
+          
+          <div class="split-layout">
+            <div>
+              <a class="site-header__logo" href="/">
+                <img alt="PyPI" src="/static/images/logo-small.6eef541e.svg">
+              </a>
+            </div>
+
+            <form class="search-form search-form--primary" action="/search/">
+              <div role="search">
+                <label for="search" class="sr-only">Search PyPI</label>
+                <input id="search" class="search-form__search" type="text" name="q" placeholder="Search projects" value="">
+                
+                <button type="submit" class="search-form__button">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  <span class="sr-only">Search</span>
+                </button>
+              </div>
+            </form>
+          </div>
+          
+
+          <div data-html-include="/_includes/current-user-indicator/">
+            <nav id="user-indicator" class="horizontal-menu horizontal-menu--light horizontal-menu--tall" aria-label="Main navigation">
+  <a class="horizontal-menu__link horizontal-menu__link--remove-on-mobile" href="/help/">Help</a>
+  <a class="horizontal-menu__link horizontal-menu__link--remove-on-mobile" href="https://donate.pypi.org">Donate</a>
+  <a class="horizontal-menu__link" href="/account/login/">Log in</a>
+  <a class="horizontal-menu__link" href="/account/register/">Register</a>
+</nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    
+    <section class="mobile-search">
+      <form class="search-form search-form--fullwidth" action="/search/">
+        <div role="search">
+          <label for="mobile-search" class="sr-only">Search PyPI</label>
+          <input id="mobile-search" class="search-form__search" type="text" name="q" placeholder="Search projects" value="">
+          
+          <button type="submit" class="search-form__button">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span class="sr-only">Search</span>
+          </button>
+          </button>
+        </div>
+      </form>
+    </section>
+    
+
+    <main id="content">
+      
+  
+    
+  
+
+  <section class="horizontal-section">
+    <div class="site-container">
+      <h1 class="page-title">Create an account on PyPI</h1>
+
+      <form method="POST" action="/account/register/" data-controller="password password-match password-strength-gauge">
+        <input name="csrf_token" type="hidden" value="tS0Gwq1bJZfFQCf-A9vfS5-fzGoVKJ81fN-lAM2xsW4">
+
+        
+
+        <div class="form-group">
+          <label for="full_name" class="form-group__label">Name</label>
+          <input autofocus class="form-group__input" id="full_name" name="full_name" placeholder="Your name" required="required" tabindex="1" type="text" value="">
+          
+        </div>
+
+        <div class="form-group">
+          <label for="full_name" class="form-group__label">Email address</label>
+          <input autocomplete="email" class="form-group__input" id="email" name="email" placeholder="Your email address" required="required" tabindex="2" type="email" value="">
+          
+        </div>
+
+        
+        <div class="form-group confirm-form">
+          <label for="confirm_form" class="form-group__label">Confirm form</label>
+          <input aria-hidden="true" class="form-group__input" id="confirm_form" name="confirm_form" type="text" value="">
+        </div>
+
+        <div class="form-group">
+          <label for="username" class="form-group__label">Username</label>
+          <input autocapitalize="off" autocomplete="username" autocorrect="off" class="form-group__input" id="username" name="username" placeholder="Select a username" required="required" spellcheck="false" tabindex="3" type="text" value="">
+          
+        </div>
+
+        <div>
+          <div class="form-group">
+            <div class="split-layout">
+              <label for="password" class="form-group__label">Password</label>
+              <label for="show-password">
+                <input data-action="change->password#togglePasswords" data-target="password.showPassword"
+                  id="show-password" type="checkbox" tabindex="7">&nbsp;Show passwords
+              </label>
+            </div>
+            
+            <div>
+              <input autocomplete="new-password" class="form-group__input" data-action="keyup-&gt;password-match#checkPasswordsMatch keyup-&gt;password-strength-gauge#checkPasswordStrength" data-target="password.password password-match.passwordMatch password-strength-gauge.password" id="new_password" name="new_password" placeholder="Select a password" required="required" tabindex="4" type="password" value="">
+            </div>
+            
+            <p class="form-group__help-text">
+  Choose a strong password that contains letters (uppercase and lowercase), numbers and special characters. Avoid common words or repetition.
+</p>
+<p class="form-group__help-text">
+  <strong>Password strength:</strong>
+  <span class="password-strength">
+    <span class="password-strength__gauge" data-target="password-strength-gauge.strengthGauge">
+      <span class="sr-only">Password field is empty</span>
+    </span>
+  </span>
+</p>
+          </div>
+
+          <div class="form-group">
+            <label for="password_confirm" class="form-group__label">Confirm password</label>
+            <input class="form-group__input" data-action="keyup-&gt;password-match#checkPasswordsMatch" data-target="password.password password-match.passwordMatch" id="password_confirm" name="password_confirm" placeholder="Confirm password" required="required" tabindex="5" type="password" value="">
+            
+          </div>
+        </div>
+
+        <div class="form-group">
+          <ul class="form-errors">
+            <li data-target="password-match.matchMessage" class="hidden"></li>
+          </ul>
+        </div>
+
+        <input type="submit" value="Create account" class="button button--primary" data-target="password-match.submit" tabindex="6">
+      </form>
+    </div>
+  </section>
+
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="footer__logo">
+        <img src="/static/images/white-cube.8c3a6fe9.svg" alt="Logo" class="-js-white-cube">
+      </div>
+
+      <div class="footer__menus">
+        <ul class="footer__menu">
+          <li>
+            <h2>Help</h2>
+          </li>
+          <li><a href="https://packaging.python.org/installing/">Installing packages</a></li>
+          <li><a href="https://packaging.python.org/distributing/">Uploading packages</a></li>
+          <li><a href="https://packaging.python.org/">User guide</a></li>
+          <li><a href="/help/">FAQs</a></li>
+        </ul>
+        <ul class="footer__menu">
+          <li>
+            <h2>About PyPI</h2>
+          </li>
+
+'''
+
 
 class PageHunterTestCase(unittest.TestCase):
 
@@ -1249,6 +1525,8 @@ class PageHunterTestCase(unittest.TestCase):
         self.assertFalse(hunter.heavy_dynamic_text)
 
         print(hunter.calc_ratio_with_base_page(core.Page(base3)))
+        print(hunter.compare_with_base_page(core.Page(base3)))
+        print(hunter.compare_with_base_page(core.Page(base4)))
 
 
 if __name__ == '__main__':
