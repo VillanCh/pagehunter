@@ -66,7 +66,7 @@ class PageHunter(object):
         self._text_heavy_dynamic = None
 
         # tolerence
-        self.diff_char_count = 30
+        self.diff_char_count = diff_char_count
         self.fixed_ratio = fixed_ratio
 
         # dynamic markings
